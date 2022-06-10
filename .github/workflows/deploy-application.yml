@@ -64,5 +64,6 @@ jobs:
           username: ${{ matrix.server.username }}
           password: ${{ matrix.server.password }}
           port: ${{ matrix.server.port }}
+          use_insecure_cipher: true
           source: ${{ github.sha }}.tar.gz
           target: ${{ matrix.server.path }}/artifacts // /home1/vilhar42/betiow.io/artifacts
