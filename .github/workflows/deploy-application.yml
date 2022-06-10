@@ -65,5 +65,5 @@ jobs:
           password: ${{ matrix.server.password }}
           port: ${{ matrix.server.port }}
           source: ${{ github.sha }}.tar.gz
-          target: ${{ matrix.server.path }}/artifacts // /home1/vilhar42/betiow.io/artifacts
+          target: ${{ matrix.server.path }}/artifacts
           use_insecure_cipher: true
