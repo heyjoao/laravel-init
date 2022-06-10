@@ -33,6 +33,6 @@ jobs:
 
       - name: Store artifact for distribuition
         uses: actions/upload-artifact@v2
-        width:
+        with:
           name: app-build
           path: ${{ github.sha }}.tar.gz
