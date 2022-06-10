@@ -1,0 +1,12 @@
+[
+    {
+        "name": "server",
+        "ip": "162.241.2.229",
+        "username": "vilhar42",
+        "password": "VILHAramos00",
+        "port": "2222",
+        "beforeHooks": "",
+        "afterHooks": "",
+        "path": "/home1/vilhar42/betiow.io"
+    }
+]
