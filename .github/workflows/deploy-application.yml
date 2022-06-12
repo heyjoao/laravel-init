@@ -147,9 +147,6 @@ jobs:
             ln -s -f $STORAGE_PATH $RELEASE_PATH
             ln -s -n -f $RELEASE_PATH $ACTIVE_RELEASE_PATH
           use_insecure_cipher: true
-
-      - name: Test PHP
-        run: php -v
   run-after-hooks:
     name: "${{ matrix.server.name }}: After hook"
     runs-on: ubuntu-latest
@@ -179,7 +176,7 @@ jobs:
           port: ${{ matrix.server.port }}
           envs: GITHUB_SHA,RELEASE_PATH,ACTIVE_RELEASE_PATH,STORAGE_PATH,BASE_PATH
           script: |
-            ${{ matrix.server.afterHooks }}
+            php artisan optimize
           use_insecure_cipher: true
   clean-up:
     name: "${{ matrix.server.name }}: Clean up"
