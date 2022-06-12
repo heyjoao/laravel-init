@@ -28,11 +28,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --no-interaction --prefer-dist
 
-      - name: Run Artisan
-        run: |
-          php artisan optimize
-          php artisan key:generate
-
       - name: Test PHP
         run: php -v
 
