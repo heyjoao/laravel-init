@@ -84,7 +84,6 @@ jobs:
             mkdir -p ${{ matrix.server.path }}/storage/{app,public,framework,logs}
             mkdir -p ${{ matrix.server.path }}/storage/framework/{cache,sessions,testing,views}
             chmod -R 0777 ${{ matrix.server.path }}/storage
-            php -v
           use_insecure_cipher: true
   run-before-hooks:
     name: "${{ matrix.server.name }}: Before hook"
@@ -110,7 +109,6 @@ jobs:
           envs: GITHUB_SHA,RELEASE_PATH,ACTIVE_RELEASE_PATH,STORAGE_PATH,BASE_PATH
           script: |
             ${{ matrix.server.beforeHooks }}
-            php -v
           use_insecure_cipher: true
   activate-release:
     name: "${{ matrix.server.name }}: Activate release"
@@ -145,5 +143,4 @@ jobs:
             ln -s -f ${BASE_PATH}/.env $RELEASE_PATH
             ln -s -f $STORAGE_PATH $RELEASE_PATH
             ln -s -n -f $RELEASE_PATH $ACTIVE_RELEASE_PATH
-            php -v
           use_insecure_cipher: true
