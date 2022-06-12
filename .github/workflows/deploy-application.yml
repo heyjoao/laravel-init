@@ -27,7 +27,10 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --no-dev --no-interaction --prefer-dist
-
+      
+      - name: Test PHP
+      run: php -v
+      
       - name: Create deployment artifact
         env:
           GITHUB_SHA: ${{ github.sha }}
@@ -144,3 +147,6 @@ jobs:
             ln -s -f $STORAGE_PATH $RELEASE_PATH
             ln -s -n -f $RELEASE_PATH $ACTIVE_RELEASE_PATH
           use_insecure_cipher: true
+          
+      - name: Test PHP
+      run: php -v          
