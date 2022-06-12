@@ -77,16 +77,11 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ matrix.server.port }}
           envs: GITHUB_SHA
-          script:
-          # Create a new directory with the commit hash as the directory name
-          |
-            mkdir -p "${{ matrix.server.path }}/releases/${GITHUB_SHA}"
-          
-          # Extract the tar file into our release directory
+          script: |
+            mkdir -p "${{ matrix.server.path }}/releases/${GITHUB_SHA}"      
             tar xzf ${{ matrix.server.path }}/artifacts/${GITHUB_SHA}.tar.gz -C "${{ matrix.server.path }}/releases/${GITHUB_SHA}"
             rm -rf ${{ matrix.server.path }}/releases/${GITHUB_SHA}/storage
-          
-          # Create Laravel storage directories and set permissions
+
             mkdir -p ${{ matrix.server.path }}/storage/{app,public,framework,logs}
             mkdir -p ${{ matrix.server.path }}/storage/framework/{cache,sessions,testing,views}
-            chmod -R 0777 ${{ matrix.server.path }}/storage          
+            chmod -R 0777 ${{ matrix.server.path }}/storage
