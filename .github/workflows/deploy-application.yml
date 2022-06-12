@@ -28,8 +28,10 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --no-interaction --prefer-dist
 
-      - name: Run Optimize
-        run: php artisan optimize
+      - name: Run Artisan
+        run: |
+        php artisan migrate
+        php artisan optimize
 
       - name: Test PHP
         run: php -v
