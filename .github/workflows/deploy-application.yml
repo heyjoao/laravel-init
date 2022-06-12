@@ -144,11 +144,3 @@ jobs:
             ln -s -f $STORAGE_PATH $RELEASE_PATH
             ln -s -n -f $RELEASE_PATH $ACTIVE_RELEASE_PATH
           use_insecure_cipher: true
-      - name: Configure PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.1"
-          extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
-          scripts: |
-            php -v
-            service php8.1-fpm reload
