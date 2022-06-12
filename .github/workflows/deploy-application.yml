@@ -19,6 +19,15 @@ jobs:
           npm install
           npm run prod
 
+      - name: Configure PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+          extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --no-interaction --prefer-dist
+
       - name: Create deployment artifact
         env:
           GITHUB_SHA: ${{ github.sha }}
@@ -114,14 +123,6 @@ jobs:
       matrix:
         server: ${{ fromJson(needs.create-deployment-artifacts.outputs.deployment-matrix) }}
     steps:
-      - name: Configure PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.1"
-          extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
-
-      - name: Install Composer dependencies
-        run: composer install --no-dev --no-interaction --prefer-dist
       - name: Activate release
         uses: appleboy/ssh-action@master
         env:
@@ -142,4 +143,5 @@ jobs:
             ln -s -f ${BASE_PATH}/.env $RELEASE_PATH
             ln -s -f $STORAGE_PATH $RELEASE_PATH
             ln -s -n -f $RELEASE_PATH $ACTIVE_RELEASE_PATH
+            php -v
           use_insecure_cipher: true
