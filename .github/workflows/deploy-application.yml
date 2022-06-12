@@ -113,9 +113,6 @@ jobs:
   activate-release:
     name: "${{ matrix.server.name }}: Activate release"
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:jammy
-      options: --privileged
     needs:
       [
         create-deployment-artifacts,
@@ -126,11 +123,6 @@ jobs:
       matrix:
         server: ${{ fromJson(needs.create-deployment-artifacts.outputs.deployment-matrix) }}
     steps:
-      - name: Configure PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.1"
-          extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
       - name: Activate release
         uses: appleboy/ssh-action@master
         env:
@@ -151,6 +143,12 @@ jobs:
             ln -s -f ${BASE_PATH}/.env $RELEASE_PATH
             ln -s -f $STORAGE_PATH $RELEASE_PATH
             ln -s -n -f $RELEASE_PATH $ACTIVE_RELEASE_PATH
-            php -v
-            service php8.0-fpm reload
           use_insecure_cipher: true
+      - name: Configure PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+          extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
+          scripts: |
+            php -v
+            service php8.1-fpm reload
