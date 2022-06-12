@@ -113,6 +113,8 @@ jobs:
   activate-release:
     name: "${{ matrix.server.name }}: Activate release"
     runs-on: ubuntu-latest
+    container:
+      options: --privileged
     needs:
       [
         create-deployment-artifacts,
