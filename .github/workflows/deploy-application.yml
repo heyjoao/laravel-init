@@ -178,6 +178,7 @@ jobs:
           script: |
             ${{ matrix.server.afterHooks }}
           use_insecure_cipher: true
+      - name: Run Optimize
         run: php artisan optimize
   clean-up:
     name: "${{ matrix.server.name }}: Clean up"
