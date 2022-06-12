@@ -30,7 +30,6 @@ jobs:
 
       - name: Run Artisan
         run: |
-          php artisan migrate --force
           php artisan optimize
 
       - name: Test PHP
