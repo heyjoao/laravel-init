@@ -20,9 +20,9 @@ jobs:
           npm run prod
 
       - name: Configure PHP
-        uses: shivammathur/setup-php@master
+        uses: shivammathur/setup-php@8.0
         with:
-          php-version: 8.1.6
+          php-version: 8.0
           extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
 
       - name: Install Composer dependencies
@@ -143,5 +143,5 @@ jobs:
             ln -s -f ${BASE_PATH}/.env $RELEASE_PATH
             ln -s -f $STORAGE_PATH $RELEASE_PATH
             ln -s -n -f $RELEASE_PATH $ACTIVE_RELEASE_PATH
-            service php8.0-fpm reload
+            sudo service php8.0-fpm reload
           use_insecure_cipher: true
