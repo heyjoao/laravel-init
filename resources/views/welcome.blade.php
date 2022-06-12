@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-12">
                     <img src="{{ asset('assets/img/logo.png') }}" data-aos="fade-down">
-                    <h1 class="text-muted text-uppercase mt-4" data-aos="fade-up">Em breve um novo sites!</h1>
+                    <h1 class="text-muted text-uppercase mt-4" data-aos="fade-up">Em breve um novo site!</h1>
                     <script src="{{ mix('assets/js/app.js') }}"></script>
                 </div>
             </div>
