@@ -20,7 +20,7 @@ jobs:
           npm run prod
 
       - name: Configure PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@master
         with:
           php-version: "8.1"
           extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
@@ -84,6 +84,7 @@ jobs:
             mkdir -p ${{ matrix.server.path }}/storage/{app,public,framework,logs}
             mkdir -p ${{ matrix.server.path }}/storage/framework/{cache,sessions,testing,views}
             chmod -R 0777 ${{ matrix.server.path }}/storage
+            php -v
           use_insecure_cipher: true
   run-before-hooks:
     name: "${{ matrix.server.name }}: Before hook"
@@ -109,6 +110,7 @@ jobs:
           envs: GITHUB_SHA,RELEASE_PATH,ACTIVE_RELEASE_PATH,STORAGE_PATH,BASE_PATH
           script: |
             ${{ matrix.server.beforeHooks }}
+            php -v
           use_insecure_cipher: true
   activate-release:
     name: "${{ matrix.server.name }}: Activate release"
