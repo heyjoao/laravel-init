@@ -28,6 +28,9 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --no-interaction --prefer-dist
 
+      - name: Run Optimize
+        run: php artisan optimize
+
       - name: Test PHP
         run: php -v
 
@@ -178,8 +181,6 @@ jobs:
           script: |
             ${{ matrix.server.afterHooks }}
           use_insecure_cipher: true
-      - name: Run Optimize
-        run: php artisan optimize
   clean-up:
     name: "${{ matrix.server.name }}: Clean up"
     runs-on: ubuntu-latest
